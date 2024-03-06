@@ -30,7 +30,7 @@ export default function NavBar() {
               height={40}
               draggable={false}
             ></Image>
-            <span className="font-medium text-white">MindSpark</span>
+            <span className="font-medium ">MindSpark</span>
           </Link>
           <div className="flex items-center gap-2">
             <UserButton
