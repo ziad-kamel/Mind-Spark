@@ -21,8 +21,8 @@ export default function Note({ note }: NoteProps) {
 
     // then we return the ui
     return (
-        <div>
-            <Card className="cursor-pointer transition-shadow hover:shadow-lg "
+        <div className="m-1">
+            <Card className="cursor-pointer transition-shadow hover:shadow-lg h-36"
             onClick={()=> setShowEditDialog(true)}
             >
             <CardHeader>

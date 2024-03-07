@@ -49,10 +49,10 @@ export default function AIChatBox({open, onClose}: AIChatBoxProps) {
     const lastMessageIsUser = messages[messages.length - 1]?.role === "user" 
 
     return <div className={cn("bottom-0 right-0 z-10 w-full max-w-[500px] p-1 xl:right-36", open? "fixed" : "hidden")}>
-        <button onClick={onClose} className="mb-1 ms-auto block">
+        <div className="flex h-[600px] flex-col rounded-xl bg-background border shadow-2xl">
+        <button onClick={onClose} className="m-2 ms-auto block hover:text-red-600">
             <XCircle size={30} />
         </button>
-        <div className="flex h-[600px] flex-col rounded bg-background border shadow-xl">
             <div className="h-full mt-3 overflow-y-auto px-3" ref={scrollRef}>
                 {messages.map((message) => (
                     <ChatMessage message={message} key={message.id} />
@@ -89,7 +89,7 @@ export default function AIChatBox({open, onClose}: AIChatBoxProps) {
                 }
 
             </div>
-            <form onSubmit={handleSubmit} className="m-3 flex gap-1">
+            <form onSubmit={handleSubmit} className="m-3 flex gap-6">
                 <Button
                 title="Clear chat"
                 variant="outline"

@@ -18,7 +18,7 @@ const allNotes = await prisma.note.findMany({where:{userId}})
 
     return( 
     <div className="h-[35rem] ">
-        <ScrollArea className="h-full">
+        <ScrollArea className="h-full p-3">
             <div className="w-full grid gap-3 sm:grid-cols-2 lg:grid-cols-3 ">
 
         {allNotes.map((note) => (
