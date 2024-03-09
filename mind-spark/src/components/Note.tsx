@@ -22,7 +22,7 @@ export default function Note({ note }: NoteProps) {
     // then we return the ui
     return (
         <div className="m-1">
-            <Card className="cursor-pointer transition-shadow hover:shadow-lg h-36"
+            <Card className="cursor-pointer transition-shadow hover:shadow-lg h-32"
             onClick={()=> setShowEditDialog(true)}
             >
             <CardHeader>
@@ -32,7 +32,7 @@ export default function Note({ note }: NoteProps) {
                     {wasUpdated && "(updated)"}
                 </CardDescription>
             </CardHeader>
-            <CardContent>
+            <CardContent className="hidden">
                 <p className="whitespace-pre-line">{note.content}</p>
             </CardContent>
             </Card>
