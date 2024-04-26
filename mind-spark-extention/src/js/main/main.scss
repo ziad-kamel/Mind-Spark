@@ -1,0 +1,101 @@
+@import "../variables.scss";
+
+
+.app {
+    background-color: $darkBG;
+    // width and heght to fill the screen
+    width: 100%;
+    min-height: 100%;
+    // display flex to center the content
+    
+}
+
+h1 {
+    color: white;
+}
+
+p {
+    color: white;
+
+}
+
+// HOME PAGE CSS
+
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0rem 2rem 0rem;
+    > button {
+        margin: 0rem 1rem 0rem 1rem;
+    }
+    flex-direction: column;
+    row-gap: 1rem;
+}
+
+.button-group > div {
+    display: flex;
+    text-align: center;
+    justify-content: space-between;
+}
+
+.button-group > div > button {
+    margin: 0rem 1rem 0rem 1rem;
+    width: 50%;
+}
+
+
+// SIDE BAR CSS
+
+.sidebar {
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem;
+    padding: 1rem;
+    background-color: $lightBG;;
+    
+    // round the corners
+    border-radius:1rem;
+    // height: 100vh;
+}
+
+.sidebar > div {
+    display: flex;
+    gap: 1rem;
+    row-gap: 5rem;
+}
+
+.sidebar-button {
+    // linear gradient for the buttons from right to left
+    background-color: $lightSidebar;;
+    // drop shadow
+    box-shadow: 0px 0px 7px 0px $darkSidebar;
+    // round the corners
+    border-radius: 5px;
+    // font size
+    font-size: 12pt;
+    transition: .5s ease-out;  
+    cursor:pointer; 
+}
+
+.sidebar-button:hover {
+    // move the background above for 100px
+    background-position: 100px;
+    
+}
+
+.sidebar-buttons > div {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    row-gap: 1rem;
+}
+
+.selected-sidebutton {
+    // linear gradient for the buttons from right to left
+    background-color: $darkBG;;
+}
+
+.hidden {
+    display: none;
+}
