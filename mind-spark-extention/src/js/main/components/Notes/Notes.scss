@@ -2,8 +2,45 @@
     display: none;
     flex-direction: column;
     row-gap: 1rem;
-    justify-content: center;
+    
     align-items: center;
     width: 100%;
     min-height: 100vh;
+}
+
+.notes-container {
+    margin: 1rem;
+    display: grid;
+    gap: 25px;
+    width: 85%;
+    height: 90%;
+}
+.notes-row{
+    display: flex;
+    justify-content: space-evenly;
+    margin: 3px;
+}
+
+.note-card{
+    
+    width: 70%;
+    height: 7rem;
+    padding: 0.5rem;
+    text-align: start;
+    overflow: hidden;
+    border-radius: 0.5rem;
+    background-color: rgb(83, 40, 133);
+    box-shadow: 0px 0px 5px 0px white;
+}
+
+
+.edit {
+    display: none;
+    flex-direction: column;
+    row-gap: 1rem;
+    
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+    background-color: aqua;
 }

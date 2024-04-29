@@ -1,0 +1,33 @@
+.addNotes-main {
+    display: none;
+    flex-direction: column;
+    row-gap: 1rem;
+    
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.container-card{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem;
+    margin-top: 5rem;
+    width: 70%;
+    height: 80%;
+    border-radius: 1rem;
+    background-color: rgb(83, 40, 133);
+    box-shadow: 0px 0px 5px 0px white;
+}
+
+.container-card > div {
+    display: flex;
+    height: 1rem;
+    align-items: center;
+    gap: 2rem;
+    color: white;
+}
+input{
+    width: 100%;
+}

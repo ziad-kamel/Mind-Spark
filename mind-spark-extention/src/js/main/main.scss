@@ -2,6 +2,8 @@
 
 
 .app {
+    display: flex;
+    flex-direction: column;
     background-color: $darkBG;
     // width and heght to fill the screen
     width: 100%;
@@ -17,6 +19,10 @@ h1 {
 p {
     color: white;
 
+}
+
+button{
+    background-color: #7D6597;
 }
 
 // HOME PAGE CSS
@@ -67,9 +73,7 @@ p {
 
 .sidebar-button {
     // linear gradient for the buttons from right to left
-    background-color: $lightSidebar;;
     // drop shadow
-    box-shadow: 0px 0px 7px 0px $darkSidebar;
     // round the corners
     border-radius: 5px;
     // font size

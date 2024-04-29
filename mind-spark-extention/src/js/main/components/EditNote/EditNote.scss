@@ -1,0 +1,23 @@
+.edit-main {
+    display: none;
+    flex-direction: column;
+    gap: 3rem;
+    
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+    // background-color: darkslategrey;
+}
+
+.note{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: 50%;
+}
+
+.title, .body {
+    color: white;
+    display: flex;
+    gap: 1rem;
+}

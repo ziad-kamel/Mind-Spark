@@ -12,6 +12,9 @@
   import Sidebar from "./components/Sidebar.svelte";
 
   import "../index.scss";
+  import AddNote from "./components/AddNote/AddNote.svelte";
+  import Chat from "./components/Chat/Chat.svelte";
+  import EditNote from "./components/EditNote/EditNote.svelte";
   import Notes from "./components/Notes/Notes.svelte";
   import "./main.scss";
 
@@ -64,18 +67,46 @@
 
 <script lang='ts' context="module">
   enum TabNames {
-    Notes = 'Notes'
+    Notes = 'Notes',
+    AddNote = 'AddNote',
+    EditNote = 'EditNote',
+    Chat = 'Chat'
+  }
+
+  type Note = {
+    id: Number,
+    title: string,
+    body: string
   }
 
   function hideAllTabs(){
-    // change display style of the cleanup tab to none
+    // change display style of the tabs to none
     
     const notes = document.querySelector('.notes-main') as HTMLElement;
     notes.style.display = "none";
+
+    const addNotes = document.querySelector('.addNotes-main') as HTMLElement;
+    addNotes.style.display = "none";
+
+    const chat = document.querySelector('.chat-main') as HTMLElement;
+    chat.style.display = "none";
+
+    const edit = document.querySelector('.edit-main') as HTMLElement;
+    edit.style.display = "none";
     
   }
 
-  export const handleTabs = (tab : string) => {
+  export var myNoteTitle:string;
+  export const setMyNoteTitle = (value: string) => {
+    myNoteTitle = value;
+  }
+  
+  export var myNoteBody:string;
+  export const setMyNoteBody = (value: string) => {
+    myNoteBody = value;
+  }
+  
+  export const handleTabs = (tab : string, note?: Note) => {
     // evalTS("helloStr", tab).then((res) => {
     //   console.log(res);
     // });
@@ -115,6 +146,21 @@
         const notes = document.querySelector('.notes-main') as HTMLElement;
         notes.style.display = "flex";
         break;
+      case TabNames.AddNote:
+        hideAllTabs();
+        const addNotes = document.querySelector('.addNotes-main') as HTMLElement;
+        addNotes.style.display = "flex";
+        break;
+      case TabNames.Chat:
+        hideAllTabs();
+        const chat = document.querySelector('.chat-main') as HTMLElement;
+        chat.style.display = "flex";
+        break;
+      case TabNames.EditNote:
+        hideAllTabs();
+        const edit = document.querySelector('.edit-main') as HTMLElement;
+        edit.style.display = "flex";
+        break;
       default:
         console.log("default");
     }
@@ -123,11 +169,14 @@
 </script>
 
 
-<Sidebar />
 <div class="app" >
+  <Sidebar />
   <Header />
   <main class="app-main">
     <Notes/>
+    <AddNote/>
+    <Chat/>
+    <EditNote/>
   </main>
 </div>
 
