@@ -1,33 +1,36 @@
 <script>
-  import { handleTabs, setMyNoteBody, setMyNoteTitle } from '../../main.svelte';
+  import { handleTabs, setMyNote, setMyNoteContent, setMyNoteTitle, token, userId } from '../../main.svelte';
 
 
   import './Notes.scss';
-    var notes;
-    notes = [
-        {id: 0, title: "note title1", body: "note body1"},
-        {id: 1, title: "note title2", body: "note body2"},
-        {id: 2, title: "note title3", body: "note body3"},
-        {id: 3, title: "note title4", body: "note body4"},
-        {id: 4, title: "note title4", body: "note body4"},
-        {id: 5, title: "note title4", body: "note body4"},
-        ]
-        
-
+    var allNotes = false;
+    var message = "You don't have any notes yet. Why don't you create one?"
+        const handleRefresh = async () => {
+            message = "loading..."
+            var myHeaders = new Headers();
+            myHeaders.append("Authorization", `Bearer ${token}`);
+            myHeaders.append("userId", `${userId}`);
+            var res = await fetch(`http://localhost:3000/api/notes`, {
+                method: "GET",
+                headers: myHeaders
+            }).then((response)=> {return response.json()}).catch((err)=>{alert(err.message)})
+            allNotes = res.notes
+            allNotes.reverse();
+        }
 </script>
 
 <div class="notes-main hidden">
-    {#if !notes}
-    <p>You don't have any notes yet. Why don't you create one?</p>
+    <p>note: if the values not showing try  <button on:click={handleRefresh}>refresh</button></p>
+    {#if !allNotes}
+    <p>{message}</p>
     {/if}
     
     <div class="notes-container">
-        
-        {#each notes as note}
+        {#each allNotes as note}
         <div class="notes-row">
-            <button class="note-card" on:click={()=>{setMyNoteTitle(note.title); setMyNoteBody(note.body); handleTabs('EditNote', note)}}>
+            <button class="note-card" on:click={()=>{setMyNote(note) ;setMyNoteTitle(note.title); setMyNoteContent(note.content); handleTabs('EditNote', note)}}>
                 <h2>{note.title}</h2>
-                <p>{note.body}</p>
+                <p>{note.content}</p>
             </button>
         </div>
         {/each}

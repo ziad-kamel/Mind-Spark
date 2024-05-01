@@ -1,11 +1,30 @@
 <script>
-    import './AddNote.scss';
+  import { token, userId } from '../../main.svelte';
+  import './AddNote.scss';
 
-    const handelSubmit = () => {
+  var buttonState = "Add note"
+    const handelSubmit = async () => {
+        buttonState = 'adding...'
         var title = document.getElementById('title').value;
-        var body = document.getElementById('body').value;
+        var content = document.getElementById('content').value;
 
-        alert(`title: ${title} \n body: ${body}`)
+        alert(`title: ${title} \n content: ${content}`)
+
+        var myHeaders = new Headers();
+        myHeaders.append("Authorization", `Bearer ${token}`);
+        myHeaders.append("userId", `${userId}`);
+        const response = await fetch(`http://localhost:3000/api/notes`,{
+            method:"POST",
+            headers: myHeaders,
+            body: JSON.stringify({title: title,content: content})
+        }).then((res)=>{return res.json()}).catch((error)=>{alert(error.message); buttonState = 'Add Note'})
+        alert(JSON.stringify(response.note))
+        if(response.note){
+            alert('note added successfully')
+        } else {
+            alert('something wrong happened')
+        }
+        buttonState = 'Add note'
     }
 </script>
 
@@ -16,10 +35,10 @@
             <input type="text" id="title" >
         </div>
         <div>
-            <h3>Body: </h3>
-            <input type="text" id="body">
+            <h3>Content: </h3>
+            <input type="text" id="content">
         </div>
 
-        <button type="submit" on:click={handelSubmit}>Add note</button>
+        <button type="submit" on:click={handelSubmit}>{buttonState}</button>
     </div>
 </div>

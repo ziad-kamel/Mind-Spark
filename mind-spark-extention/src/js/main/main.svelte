@@ -73,10 +73,14 @@
     Chat = 'Chat'
   }
 
+
   type Note = {
-    id: Number,
-    title: string,
-    body: string
+    id: string;
+    title: string;
+    content: string | null;
+    userId: string;
+    createdAt: Date;
+    updateAt: Date;
   }
 
   function hideAllTabs(){
@@ -101,11 +105,19 @@
     myNoteTitle = value;
   }
   
-  export var myNoteBody:string;
-  export const setMyNoteBody = (value: string) => {
-    myNoteBody = value;
+  export var myNoteContent:string;
+  export const setMyNoteContent = (value: string) => {
+    myNoteContent = value;
   }
   
+  export var myNote:Note;
+  export const setMyNote = (note: Note) => {
+    myNote = note;
+  }
+
+  
+  export const token = 'eyJhbGciOiJSUzI1NiIsImNhdCI6ImNsX0I3ZDRQRDIyMkFBQSIsImtpZCI6Imluc18yYnJkR1dVV0J1amV2V0NrdE53SjQ3enRYS3UiLCJ0eXAiOiJKV1QifQ.eyJhenAiOiJodHRwOi8vbG9jYWxob3N0OjMwMDAiLCJleHAiOjE3MTQ1NjI5MzUsImlhdCI6MTcxNDU0NDkzNSwiaXNzIjoiaHR0cHM6Ly90b3VnaC1za2luay00NS5jbGVyay5hY2NvdW50cy5kZXYiLCJqdGkiOiI0MjkyYWVmNGZjYTQ4YzQzNGZiMSIsIm5iZiI6MTcxNDU0NDkzMCwic3ViIjoidXNlcl8yY0RsNU5SYmFWdXNCUlpIWHlIMDYxaVZHQTIifQ.bKRoDV0Zf-x-yIi6TUmI5l1iERZR4aRmfAvso_WVxZH3T6W3cO_bU2h4ApNSqxNADf1q6mtw5kdc0fww7kwQk1CpzcjyIS2B1NXg1XXRI5BhmjSDNlR-_hgQ-5jKXhUAXZVk0YMvf1A6y6RgAzTPzXcqw2N7SIV_jGExhzwYjyo_bjDRQTn0bde43vzZanQcespMdZRrLRFeVlEkrOr9IFsclH-v6rXFeWS885Q3I0J--itNOMPFRF_gY_a1VGfZb_gwHtqsEWF8Zkvo2lSSgBR5ZPARKMC0-PrY2Abdk5Xd5ldIT6PMVnswEHrGY0Q6vAUkOrGf2_qCSplc2fmAJg'
+  export const userId = 'user_2cDl5NRbaVusBRZHXyH061iVGA2'
   export const handleTabs = (tab : string, note?: Note) => {
     // evalTS("helloStr", tab).then((res) => {
     //   console.log(res);

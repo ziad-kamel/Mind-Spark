@@ -1,18 +1,24 @@
 <script>
+  import { token, userId } from '../../main.svelte';
   import './Chat.scss';
-    // var messages = ["tell me a joke!", "tell me a new joke!", "tell me another joke!"]
-    // var responses = ["xavi hernandes", "pep goudriola", "diago semioni"]
-    var messages = ''
+    var userPrompt = ''
     var responses = ''
 
-
-    var c = 1;
     const handelSubmit = async () => {
         responses = ''
         var prompt = document.getElementById('prompt').value;
-        messages = prompt
-        responses = 'ayy yo brooo' + c++
-        // messages.push(prompt)
+        userPrompt = prompt
+        
+        var myHeaders = new Headers();
+        myHeaders.append("Authorization", `Bearer ${token}`);
+        myHeaders.append("userId", `${userId}`);
+
+        const botResponse = await fetch(`http://localhost:3000/api/chat`,{
+            method:"POST",
+            headers: myHeaders,
+            body: JSON.stringify({messages: [{content: userPrompt, role: "assistant"}]})
+        }).then((res)=>{return res.text()}).catch((error)=>{alert(error.message)})
+        responses = botResponse
     }
 
 
@@ -22,22 +28,11 @@
     <div class="chat-container">
         <div class="chat-body">
             <div class="message-row">
-                <p class="message"> {messages}</p>
+                <p class="message"> {userPrompt}</p>
             </div>
             <div class="response-row">
                 <p class="response"> {responses}</p>
             </div>
-
-            <!-- <div class="message-col">
-                {#each responses as response}
-                <p class="response">{response}</p>
-                {/each}
-            </div>
-            <div class="response-col">
-                {#each messages as message}
-                <p class="message">{message}</p>
-                {/each}
-            </div> -->
         </div>
 
         <div class="chat-controls">

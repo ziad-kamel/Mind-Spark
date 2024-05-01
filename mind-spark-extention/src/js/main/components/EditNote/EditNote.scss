@@ -10,14 +10,27 @@
 }
 
 .note{
+    padding: 2rem;
     display: flex;
     flex-direction: column;
     gap: 2rem;
     width: 50%;
+    border-radius: 0.5rem;
+    background-color: rgb(47, 49, 80);
+
 }
 
-.title, .body {
+.title, .content {
     color: white;
     display: flex;
     gap: 1rem;
+}
+.action-buttons{
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.delete-btn{
+    background-color: rgb(127, 29, 29);
 }
