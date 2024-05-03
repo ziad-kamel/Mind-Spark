@@ -20,7 +20,7 @@
 </script>
 
 <div class="notes-main hidden">
-    <p>note: if the values not showing try  <button on:click={handleRefresh}>refresh</button></p>
+    <button id="refresh" on:click={handleRefresh}></button>
     {#if !allNotes}
     <p>{message}</p>
     {/if}
@@ -30,7 +30,6 @@
         <div class="notes-row">
             <button class="note-card" on:click={()=>{setMyNote(note) ;setMyNoteTitle(note.title); setMyNoteContent(note.content); handleTabs('EditNote', note)}}>
                 <h2>{note.title}</h2>
-                <p>{note.content}</p>
             </button>
         </div>
         {/each}

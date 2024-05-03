@@ -36,7 +36,6 @@
         </div>
 
         <div class="chat-controls">
-            <button>bin</button>
             <input type="text" id="prompt" placeholder="Say something...">
             <button type="submit" on:click={handelSubmit}>Send</button>
         </div>

@@ -25,6 +25,7 @@
             alert('something wrong happened')
         }
         buttonState = 'Add note'
+        handleTabs("Notes")
     }
 </script>
 

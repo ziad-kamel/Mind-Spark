@@ -100,6 +100,15 @@
     
   }
 
+  function edit_refresh() {
+    const refreshBtn = document.getElementById('refresh-edit') as HTMLElement;
+    refreshBtn.click();
+  }
+  function refresh() {
+    const refreshBtn = document.getElementById('refresh') as HTMLElement;
+    refreshBtn.click();
+  }
+
   export var myNoteTitle:string;
   export const setMyNoteTitle = (value: string) => {
     myNoteTitle = value;
@@ -115,9 +124,14 @@
     myNote = note;
   }
 
+  export const navigate = (page: string) => {
+    handleTabs(page)
+  }
+
   
-  export const token = 'eyJhbGciOiJSUzI1NiIsImNhdCI6ImNsX0I3ZDRQRDIyMkFBQSIsImtpZCI6Imluc18yYnJkR1dVV0J1amV2V0NrdE53SjQ3enRYS3UiLCJ0eXAiOiJKV1QifQ.eyJhenAiOiJodHRwOi8vbG9jYWxob3N0OjMwMDAiLCJleHAiOjE3MTQ1NjI5MzUsImlhdCI6MTcxNDU0NDkzNSwiaXNzIjoiaHR0cHM6Ly90b3VnaC1za2luay00NS5jbGVyay5hY2NvdW50cy5kZXYiLCJqdGkiOiI0MjkyYWVmNGZjYTQ4YzQzNGZiMSIsIm5iZiI6MTcxNDU0NDkzMCwic3ViIjoidXNlcl8yY0RsNU5SYmFWdXNCUlpIWHlIMDYxaVZHQTIifQ.bKRoDV0Zf-x-yIi6TUmI5l1iERZR4aRmfAvso_WVxZH3T6W3cO_bU2h4ApNSqxNADf1q6mtw5kdc0fww7kwQk1CpzcjyIS2B1NXg1XXRI5BhmjSDNlR-_hgQ-5jKXhUAXZVk0YMvf1A6y6RgAzTPzXcqw2N7SIV_jGExhzwYjyo_bjDRQTn0bde43vzZanQcespMdZRrLRFeVlEkrOr9IFsclH-v6rXFeWS885Q3I0J--itNOMPFRF_gY_a1VGfZb_gwHtqsEWF8Zkvo2lSSgBR5ZPARKMC0-PrY2Abdk5Xd5ldIT6PMVnswEHrGY0Q6vAUkOrGf2_qCSplc2fmAJg'
-  export const userId = 'user_2cDl5NRbaVusBRZHXyH061iVGA2'
+  export const token = import.meta.env.VITE_TOKEN
+  export const userId = import.meta.env.VITE_UserId
+  alert(userId)
   export const handleTabs = (tab : string, note?: Note) => {
     // evalTS("helloStr", tab).then((res) => {
     //   console.log(res);
@@ -155,6 +169,7 @@
     switch(tab){
       case TabNames.Notes:
         hideAllTabs();
+        refresh()
         const notes = document.querySelector('.notes-main') as HTMLElement;
         notes.style.display = "flex";
         break;
@@ -170,6 +185,7 @@
         break;
       case TabNames.EditNote:
         hideAllTabs();
+        edit_refresh()
         const edit = document.querySelector('.edit-main') as HTMLElement;
         edit.style.display = "flex";
         break;

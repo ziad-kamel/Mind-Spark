@@ -10,6 +10,7 @@
 }
 
 .note{
+    margin: 2rem;
     padding: 2rem;
     display: flex;
     flex-direction: column;
@@ -33,4 +34,8 @@
 
 .delete-btn{
     background-color: rgb(127, 29, 29);
+}
+
+#refresh-edit{
+    display: none;
 }

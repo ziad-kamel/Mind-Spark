@@ -44,7 +44,7 @@
     }
 </script>
 <div class="edit-main hidden">
-    <p>note: if the values not showing try  <button on:click={handleRefresh}>refresh</button></p>
+    <button id="refresh-edit" on:click={handleRefresh}>refresh</button>
     <div class="note">
         <div class="title">
             <h3>Title: </h3>
