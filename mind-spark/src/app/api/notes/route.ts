@@ -3,6 +3,20 @@ import prisma from "@/lib/db/prisma"
 import { getEmbedding } from "@/lib/openai"
 import { createNoteSchema, deleteNoteSchema, updateNoteSchema } from "@/lib/validation/note"
 import { auth } from "@clerk/nextjs"
+
+export async function GET(req: Request) {
+    //fetch all notes for user
+    //this api is specificity for the extension version
+    try {
+        const {userId} = auth()
+        const myUserId = userId? userId : req.headers.get('userId');
+        const allData = await prisma.note.findMany({where:{userId:{equals:`${myUserId}`}}})
+        return Response.json({notes: allData})
+    } catch (error) {
+        return Response.json({message: "no"})
+    }
+}
+
 export async function POST(req: Request){
     try{
         const body = await req.json()
@@ -18,6 +32,7 @@ export async function POST(req: Request){
         const {title, content} = parseResult.data
 
         const {userId} = auth()
+        const myUserId = userId? userId : req.headers.get('userId');
 
         if (!userId){
             return Response.json({error:"Unauthorized"}, {status: 401})
@@ -36,7 +51,7 @@ export async function POST(req: Request){
                 data: {
                     title,
                     content,
-                    userId
+                    userId:`${myUserId}`
                 }
             })
 
@@ -46,7 +61,7 @@ export async function POST(req: Request){
                 {
                     id: note.id,
                     values: embedding,
-                    metadata: {userId} // the embedding for a particular user
+                    metadata: {userId:`${myUserId}`} // the embedding for a particular user
                 }
             ])
             return note
@@ -82,8 +97,9 @@ export async function PUT(req: Request) {
         }
 
         const {userId} = auth()
+        const myUserId = userId? userId : req.headers.get('userId');
 
-        if (!userId || userId !== note.userId){
+        if (!myUserId || myUserId !== note.userId){
             return Response.json({error:"Unauthorized"}, {status: 401})
         }
 
@@ -103,7 +119,7 @@ export async function PUT(req: Request) {
                 {
                     id, // id of the note we updating
                     values: embedding,
-                    metadata: {userId}
+                    metadata: {userId:`${myUserId}`}
                 }
             ])
             return updatedNote
@@ -136,8 +152,9 @@ export async function DELETE (req: Request) {
         }
 
         const {userId} = auth()
-
-        if (!userId || userId !== note.userId){
+        const myUserId = userId? userId : req.headers.get('userId');
+        
+        if (!myUserId || myUserId !== note.userId){
             return Response.json({error:"Unauthorized"}, {status: 401})
         }
 

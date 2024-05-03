@@ -6,8 +6,8 @@ import { Metadata } from "next";
 
 
 export const metadata:Metadata={
-    title:"MindSpark-Note",
-
+    title:"Notes",
+    icons: 'mindspark.png'
 }
 export default async function NotePage(){
 const {userId} = auth()
