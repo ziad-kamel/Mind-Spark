@@ -13,7 +13,7 @@
         myHeaders.append("Authorization", `Bearer ${token}`);
         myHeaders.append("userId", `${userId}`);
 
-        const botResponse = await fetch(`http://localhost:3000/api/chat`,{
+        const botResponse = await fetch(`https://mind-spark-v1qx.vercel.app/api/chat`,{
             method:"POST",
             headers: myHeaders,
             body: JSON.stringify({messages: [{content: userPrompt, role: "assistant"}]})

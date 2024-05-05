@@ -131,7 +131,6 @@
   
   export const token = import.meta.env.VITE_TOKEN
   export const userId = import.meta.env.VITE_UserId
-  alert(userId)
   export const handleTabs = (tab : string, note?: Note) => {
     // evalTS("helloStr", tab).then((res) => {
     //   console.log(res);

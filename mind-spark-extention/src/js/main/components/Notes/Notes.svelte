@@ -10,7 +10,7 @@
             var myHeaders = new Headers();
             myHeaders.append("Authorization", `Bearer ${token}`);
             myHeaders.append("userId", `${userId}`);
-            var res = await fetch(`http://localhost:3000/api/notes`, {
+            var res = await fetch(`https://mind-spark-v1qx.vercel.app/api/notes`, {
                 method: "GET",
                 headers: myHeaders
             }).then((response)=> {return response.json()}).catch((err)=>{alert(err.message)})
